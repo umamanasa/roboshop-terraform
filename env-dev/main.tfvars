@@ -3,6 +3,7 @@ default_vpc_cidr            = "172.31.0.0/16"
 default_vpc_route_table_id  = "rtb-0c2ca2a512e7fa3d7"
 zone_id                     = "Z0365188L7MG2LV8YN4J"
 env                         = "dev"
+ssh_ingress_cidr            = ["172.31.85.208/32"]        #workstation bastion node private IP
 
 tags = {
   company_name    = "ABC Tech"
@@ -88,7 +89,14 @@ elasticache = {
 
 rabbitmq = {
   main = {
-    ssh_ingress_cidr = ["172.31.85.208/32"]        #workstation bastion node private IP
     instance_type    = "t3.small"
+  }
+}
+
+apps = {
+  frontend = {
+    instance_type = "t3.micro"
+    port          = 80
+
   }
 }
