@@ -93,7 +93,7 @@ module "rabbitmq" {
 
   tags                          = var.tags
   env                           = var.env
-
+  zone_id                       = var.zone_id
   for_each                      = var.rabbitmq
 
   subnet_ids                    = local.db_subnets
