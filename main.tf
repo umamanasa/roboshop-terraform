@@ -104,7 +104,8 @@ module "rabbitmq" {
 }
 
 module "app" {
-  source = "git::https://github.com/umamanasa/tf-module-app.git"
+  depends_on = [module.docdb, module.alb, module.elasticache, module.rabbitmq, module.rds]
+  source     = "git::https://github.com/umamanasa/tf-module-app.git"
 
   tags                          = var.tags
   env                           = var.env
