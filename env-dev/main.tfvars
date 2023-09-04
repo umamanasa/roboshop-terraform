@@ -4,6 +4,7 @@ default_vpc_route_table_id  = "rtb-0c2ca2a512e7fa3d7"
 zone_id                     = "Z0365188L7MG2LV8YN4J"
 env                         = "dev"
 ssh_ingress_cidr            = ["172.31.85.208/32"]        #workstation bastion node private IP
+#monitoring_ingress_cidr = ["172.31.80.242/32"]         #Prometheus instance Private IP
 
 tags = {
   company_name    = "ABC Tech"
