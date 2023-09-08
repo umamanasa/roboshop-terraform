@@ -4,7 +4,7 @@ default_vpc_route_table_id  = "rtb-0c2ca2a512e7fa3d7"
 zone_id                     = "Z0365188L7MG2LV8YN4J"
 env                         = "dev"
 ssh_ingress_cidr            = ["172.31.95.128/32"]        #workstation bastion node private IP
-#monitoring_ingress_cidr = ["172.31.80.242/32"]         #Prometheus instance Private IP
+monitoring_ingress_cidr = ["172.31.80.242/32"]         #Prometheus instance Private IP
 
 tags = {
   company_name    = "ABC Tech"
@@ -104,6 +104,7 @@ apps = {
     lb_priority       = 1
     lb_type           = "public"
     parameters        = []
+    tags              = { Monitor_Nginx = "yes" }
   }
   catalogue = {
     instance_type     = "t3.micro"
@@ -114,6 +115,7 @@ apps = {
     lb_priority       = 2
     lb_type           = "private"
     parameters        = ["docdb"]
+    tags              = {}
   }
   user = {
     instance_type     = "t3.micro"
@@ -124,6 +126,7 @@ apps = {
     lb_priority       = 3
     lb_type           = "private"
     parameters        = ["docdb"]
+    tags              = {}
   }
   cart = {
     instance_type     = "t3.micro"
@@ -134,6 +137,7 @@ apps = {
     lb_priority       = 4
     lb_type           = "private"
     parameters        = []
+    tags              = {}
   }
   payment = {
     instance_type     = "t3.micro"
@@ -144,6 +148,7 @@ apps = {
     lb_priority       = 5
     lb_type           = "private"
     parameters        = ["rabbitmq"]
+    tags              = {}
   }
   shipping = {
     instance_type     = "t3.micro"
@@ -154,5 +159,6 @@ apps = {
     lb_priority       = 6
     lb_type           = "private"
     parameters        = ["rds"]
+    tags              = {}
   }
 }
