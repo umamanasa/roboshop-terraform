@@ -14,6 +14,8 @@ tags = {
   created_by      = "terraform"
 }
 
+az = ["us-east-1a", "us-east-1b"]
+
 vpc = {
   main = {
     cidr = "10.0.0.0/16"
@@ -103,7 +105,7 @@ apps = {
     min_size          = 1
     lb_priority       = 1
     lb_type           = "public"
-    parameters        = []
+    parameters        = ["nexus"]
     tags              = { Monitor_Nginx = "yes" }
   }
   catalogue = {
@@ -114,7 +116,7 @@ apps = {
     min_size          = 1
     lb_priority       = 2
     lb_type           = "private"
-    parameters        = ["docdb"]
+    parameters        = ["docdb", "nexus"]
     tags              = {}
   }
   user = {
@@ -125,7 +127,7 @@ apps = {
     min_size          = 1
     lb_priority       = 3
     lb_type           = "private"
-    parameters        = ["docdb"]
+    parameters        = ["docdb", "nexus"]
     tags              = {}
   }
   cart = {
@@ -136,7 +138,7 @@ apps = {
     min_size          = 1
     lb_priority       = 4
     lb_type           = "private"
-    parameters        = []
+    parameters        = ["nexus"]
     tags              = {}
   }
   payment = {
@@ -147,7 +149,7 @@ apps = {
     min_size          = 1
     lb_priority       = 5
     lb_type           = "private"
-    parameters        = ["rabbitmq"]
+    parameters        = ["rabbitmq", "nexus"]
     tags              = {}
   }
   shipping = {
@@ -158,7 +160,7 @@ apps = {
     min_size          = 1
     lb_priority       = 6
     lb_type           = "private"
-    parameters        = ["rds"]
+    parameters        = ["rds", "nexus"]
     tags              = {}
   }
 }
