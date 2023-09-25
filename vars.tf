@@ -14,3 +14,4 @@ variable "apps" {}
 variable "ssh_ingress_cidr" {}
 variable "monitoring_ingress_cidr" {}
 variable "az" {}
+variable "acm_certificate_arn" {}

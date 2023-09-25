@@ -4,7 +4,8 @@ default_vpc_route_table_id  = "rtb-0c2ca2a512e7fa3d7"
 zone_id                     = "Z0365188L7MG2LV8YN4J"
 env                         = "dev"
 ssh_ingress_cidr            = ["172.31.95.128/32"]        #workstation bastion node private IP
-monitoring_ingress_cidr = ["172.31.80.242/32"]         #Prometheus instance Private IP
+monitoring_ingress_cidr     = ["172.31.80.242/32"]         #Prometheus instance Private IP
+acm_certificate_arn         = "arn:aws:acm:us-east-1:206243364202:certificate/82b4e2d0-0cba-40da-9ef0-367058ab2b36"  #ACM Certificate arn
 
 tags = {
   company_name    = "ABC Tech"
@@ -41,7 +42,7 @@ alb = {
     internal          = false
     lb_type           = "application"
     sg_ingress_cidr   = ["0.0.0.0/0"]
-    sg_port           = 80
+    sg_port           = 443
   }
   private = {
     internal          = true
