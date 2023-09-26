@@ -6,6 +6,8 @@ env                         = "dev"
 ssh_ingress_cidr            = ["172.31.95.128/32"]        #workstation bastion node private IP
 monitoring_ingress_cidr     = ["172.31.80.242/32"]         #Prometheus instance Private IP
 acm_certificate_arn         = "arn:aws:acm:us-east-1:206243364202:certificate/82b4e2d0-0cba-40da-9ef0-367058ab2b36"  #ACM Certificate arn
+#kms_key_id                  = ""                               #Kms Key encryption arn
+
 
 tags = {
   company_name    = "ABC Tech"

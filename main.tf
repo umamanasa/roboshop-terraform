@@ -42,6 +42,7 @@ module "alb" {
 #  engine_family                 = each.value["engine_family"]
 #  instance_count                = each.value["instance_count"]
 #  instance_class                = each.value["instance_class"]
+#  kms_key_id                     = var.kms_key_id             #comment this as i dont have encryption kms key
 #}
 #
 #module "rds" {
@@ -65,6 +66,7 @@ module "alb" {
 #  skip_final_snapshot           = each.value["skip_final_snapshot"]
 #  instance_count                = each.value["instance_count"]
 #  instance_class                = each.value["instance_class"]
+#  kms_key_id                    = var.kms_key_id             #comment this as i dont have encryption kms key
 #
 #}
 #
@@ -102,6 +104,7 @@ module "alb" {
 #  sg_ingress_cidr               = local.app_subnets_cidr
 #  instance_type                 = each.value["instance_type"]
 #  ssh_ingress_cidr              = var.ssh_ingress_cidr
+#  kms_key_id                    = var.kms_key_id             #comment this as i dont have encryption kms key
 #}
 
 module "app" {
@@ -115,6 +118,7 @@ module "app" {
   default_vpc_id                = var.default_vpc_id
   monitoring_ingress_cidr       = var.monitoring_ingress_cidr
   az                            = var.az
+#  kms_key_id                    = var.kms_key_id             #comment this as i dont have encryption kms key
 
   for_each                      = var.apps
   component                     = each.key
