@@ -140,3 +140,11 @@ module "app" {
   public_listener              = lookup(lookup(lookup(module.alb, "public", null), "listener", null), "arn", null)
 }
 
+resource "aws_instance" "load_runner" {
+  ami                       = data.aws_ami.ami.id
+  vpc_security_group_ids    = ["sg-041096a23e28b0eb0"]
+  instance_type             = "t3.medium"
+  tags = {
+    name = "load-runner"
+  }
+}
