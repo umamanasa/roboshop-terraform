@@ -112,7 +112,7 @@ apps = {
     tags              = { Monitor_Nginx = "yes" }
   }
   catalogue = {
-    instance_type     = "t3.micro"
+    instance_type     = "t3.small"
     port              = 8080
     desired_capacity  = 2
     max_size          = 10
@@ -158,9 +158,9 @@ apps = {
   shipping = {
     instance_type     = "t3.medium"
     port              = 8080
-    desired_capacity  = 0
+    desired_capacity  = 2
     max_size          = 10
-    min_size          = 0
+    min_size          = 2
     lb_priority       = 6
     lb_type           = "private"
     parameters        = ["rds", "nexus"]
