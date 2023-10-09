@@ -175,39 +175,6 @@ module "eks" {
   subnet_ids               = local.app_subnets
   control_plane_subnet_ids = local.app_subnets
 
-    self_managed_node_groups = {
-    one = {
-      name         = "mixed-1"
-      max_size     = 5
-      desired_size = 2
-
-      use_mixed_instances_policy = true
-      mixed_instances_policy = {
-        instances_distribution = {
-          on_demand_base_capacity                  = 0
-          on_demand_percentage_above_base_capacity = 10
-          spot_allocation_strategy                 = "capacity-optimized"
-        }
-
-        override = [
-          {
-            instance_type     = "t3.medium"
-            weighted_capacity = "1"
-          },
-          {
-            instance_type     = "t3.large"
-            weighted_capacity = "2"
-          },
-        ]
-      }
-    }
-  }
-
-  # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = {
-    instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
-  }
-
   eks_managed_node_groups = {
     blue = {}
     green = {
@@ -220,49 +187,14 @@ module "eks" {
     }
   }
 
-  # Fargate Profile(s)
-  fargate_profiles = {
-    default = {
-      name = "default"
-      selectors = [
-        {
-          namespace = "default"
-        }
-      ]
-    }
-  }
+  tags = var.tags
+}
 
-  # aws-auth configmap
-  manage_aws_auth_configmap = true
-
-  aws_auth_roles = [
-    {
-      rolearn  = "arn:aws:iam::66666666666:role/role1"
-      username = "role1"
-      groups   = ["system:masters"]
-    },
-  ]
-
-  aws_auth_users = [
-    {
-      userarn  = "arn:aws:iam::66666666666:user/user1"
-      username = "user1"
-      groups   = ["system:masters"]
-    },
-    {
-      userarn  = "arn:aws:iam::66666666666:user/user2"
-      username = "user2"
-      groups   = ["system:masters"]
-    },
-  ]
-
-  aws_auth_accounts = [
-    "777777777777",
-    "888888888888",
-  ]
-
-  tags = {
-    Environment = "dev"
-    Terraform   = "true"
-  }
+resource "aws_security_group_rule" "https-to-eks" {
+  from_port         = 443
+  protocol          = "tcp"
+  security_group_id = module.eks.cluster_security_group_id
+  to_port           = 443
+  type              = "ingress"
+  cidr_blocks       = var.ssh_ingress_cidr
 }
