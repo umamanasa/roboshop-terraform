@@ -176,11 +176,11 @@ module "eks" {
   control_plane_subnet_ids = local.app_subnets
 
   eks_managed_node_groups = {
-    blue = {}
+#    blue = {}
     green = {
-      min_size     = 1
+      min_size     = 2
       max_size     = 10
-      desired_size = 1
+      desired_size = 3
 
       instance_types = ["t3.large"]
       capacity_type  = "SPOT"
