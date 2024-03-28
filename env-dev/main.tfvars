@@ -11,7 +11,7 @@ acm_certificate_arn         = "arn:aws:acm:us-east-1:206243364202:certificate/82
 
 tags = {
   company_name    = "ABC Tech"
-  bussiness_unit  = "Ecommerce"
+  business_unit  = "Ecommerce"
   project_name    = "robotshop"
   cost_center     = "ecom_rs"
   created_by      = "terraform"
